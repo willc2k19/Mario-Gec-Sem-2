@@ -10,7 +10,7 @@ Texture2D::Texture2D(SDL_Renderer* renderer)
 	//Free up memory
 	Free();
 
-	m_renderer = nullptr;
+	//m_renderer = nullptr;
 
 }
 
