@@ -6,6 +6,7 @@
 #include "GameScreen.h"
 
 
+class Texture2D;
 
 
 
@@ -27,7 +28,6 @@ public:
 };
 
 
-class Texture2D;
 
 
 #endif //_GAMESCREENLEVEL1_H

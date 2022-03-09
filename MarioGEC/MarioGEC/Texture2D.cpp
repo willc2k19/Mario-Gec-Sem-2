@@ -6,17 +6,14 @@ using namespace std;
 Texture2D::Texture2D(SDL_Renderer* renderer)
 {
 	m_renderer = renderer;
-
-	//Free up memory
-	Free();
-
-	//m_renderer = nullptr;
-
 }
 
 Texture2D::~Texture2D()
 {
+	//Free up memory
+	Free();
 
+	m_renderer = nullptr;
 }
 
 bool Texture2D::LoadFromFile(std::string path)
@@ -57,7 +54,6 @@ bool Texture2D::LoadFromFile(std::string path)
 
 void Texture2D::Free()
 {
-
 	//check if texture exists before removing it
 	if (m_texture != nullptr)
 	{
@@ -66,9 +62,6 @@ void Texture2D::Free()
 		m_width = 0;
 		m_height = 0;
 	}
-
-
-
 }
 
 void Texture2D::Render(Vector2D new_position, SDL_RendererFlip flip, double angle)

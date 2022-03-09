@@ -30,9 +30,6 @@ void Render();
 
 
 
-
-
-
 int main(int argc, char* args[])
 {
 	//check if sdl was setup correctly
@@ -89,13 +86,6 @@ bool InitSDL()
 				cout << "SDL_Image could not initialise. Error: " << IMG_GetError();
 				return false;
 			}
-			
-			////load the background texture
-			//g_texture = new Texture2D(g_renderer);
-			//if (!g_texture->LoadFromFile("Images/test.bmp"))
-			//{
-			//	return false;
-			//}
 
 		}
 		else

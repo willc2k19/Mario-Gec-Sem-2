@@ -12,15 +12,11 @@
 GameScreen::GameScreen(SDL_Renderer* renderer)
 {
 	m_renderer = renderer;
-
-	m_renderer = nullptr;
-
-
 }
 
 GameScreen::~GameScreen()
 {
-
+	m_renderer = nullptr;
 }
 
 void GameScreen::Render()

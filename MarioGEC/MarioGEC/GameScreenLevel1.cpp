@@ -4,11 +4,24 @@
 
 
 
+GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer)
+{
+	SetUpLevel();
+
+}
+
+GameScreenLevel1::~GameScreenLevel1()
+{
+	m_background_texture = nullptr;
+
+}
+
 bool GameScreenLevel1::SetUpLevel()
 {
 	//load texture
 	m_background_texture = new Texture2D(m_renderer);
-	if (!m_background_texture->LoadFromFile("Images/text.bmp"))
+
+	if (!m_background_texture->LoadFromFile("Images/BackgroundMB.png"))
 	{
 		std::cout << "Failed to load background texture!" << std::endl;
 		return false;
@@ -17,17 +30,6 @@ bool GameScreenLevel1::SetUpLevel()
 
 }
 
-GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer)
-{
-	SetUpLevel();
-
-	m_background_texture = nullptr;
-}
-
-GameScreenLevel1::~GameScreenLevel1()
-{
-
-}
 
 void GameScreenLevel1::Render()
 {
