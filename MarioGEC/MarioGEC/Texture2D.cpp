@@ -62,6 +62,7 @@ void Texture2D::Free()
 		m_width = 0;
 		m_height = 0;
 	}
+
 }
 
 void Texture2D::Render(Vector2D new_position, SDL_RendererFlip flip, double angle)
