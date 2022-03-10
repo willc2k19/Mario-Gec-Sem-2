@@ -28,14 +28,24 @@ void Character::Update(float deltaTime, SDL_Event e)
 {
 	switch (e.type)
 	{
-		case SDL_KEYUP:
+		case SDL_KEYDOWN:
 			switch (e.key.keysym.sym)
 			{
 			case SDLK_LEFT:
 				m_position.x -= 1;
+				break;
 
 			case SDLK_RIGHT:
 				m_position.x += 1;
+				break;
+
+			case SDLK_UP:
+				m_position.y -= 1;
+				break;
+
+			case SDLK_DOWN:
+				m_position.y += 1;
+				break;
 
 			}
 	}
