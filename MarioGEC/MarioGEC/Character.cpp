@@ -6,7 +6,8 @@ Character::Character(SDL_Renderer* renderer, string imagePath, Vector2D start_po
 	m_renderer = renderer;
 
 	m_position = start_position;
-
+	
+	m_texture = new Texture2D(renderer);
 	m_texture->LoadFromFile(imagePath);
 }
 
