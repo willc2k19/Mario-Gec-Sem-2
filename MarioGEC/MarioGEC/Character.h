@@ -26,5 +26,8 @@ public:
 	void SetPosition(Vector2D new_position);
 	Vector2D GetPosition();
 
+
+private:
+	FACING m_facing_direction;
 };
 
