@@ -19,6 +19,30 @@ struct Vector2D
 
 };
 
+struct Rect2D
+{
+	float x;
+	float y;
+	float width;
+	float height;
+
+	Rect2D()
+	{
+		x = 0.0f;
+		y = 0.0f;
+		width = 0.0f;
+		height = 0.0f;
+	}
+
+	Rect2D(float initialX, float initialY, float initialWidth, float initialHeight)
+	{
+		x = initialX;
+		y = initialY;
+		width = initialWidth;
+		height = initialHeight;
+	}
+};
+
 enum SCREENS
 {
 	SCREEN_INTRO,
