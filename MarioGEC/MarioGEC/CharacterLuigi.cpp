@@ -1,7 +1,7 @@
-#include "CharacterMario.h"
+#include "CharacterLuigi.h"
 #include "Texture2D.h"
 
-CharacterMario::CharacterMario(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
+CharacterLuigi::CharacterLuigi(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
 {
 	//m_renderer = renderer;
 
@@ -16,13 +16,13 @@ CharacterMario::CharacterMario(SDL_Renderer* renderer, string imagePath, Vector2
 
 }
 
-CharacterMario::~CharacterMario()
+CharacterLuigi::~CharacterLuigi()
 {
 	//m_renderer = nullptr;
 
 }
 
-void CharacterMario::Render()
+void CharacterLuigi::Render()
 {
 	if (m_facing_direction == FACING_RIGHT)
 	{
@@ -35,7 +35,7 @@ void CharacterMario::Render()
 
 }
 
-void CharacterMario::Update(float deltaTime, SDL_Event e)
+void CharacterLuigi::Update(float deltaTime, SDL_Event e)
 {
 
 	if (m_jumping)
@@ -62,38 +62,38 @@ void CharacterMario::Update(float deltaTime, SDL_Event e)
 	case SDL_KEYDOWN:
 		switch (e.key.keysym.sym)
 		{
-		case SDLK_LEFT:
+		case SDLK_a:
 			MoveLeft(deltaTime);
 			//m_moving_left = true;
 			m_facing_direction = FACING_LEFT;
 			break;
 
-		case SDLK_RIGHT:
+		case SDLK_d:
 			MoveLeft(deltaTime);
 			//m_moving_right = true;
 			m_facing_direction = FACING_RIGHT;
 			break;
 
-		case SDLK_UP:
+		case SDLK_w:
 			Jump();
 			break;
 		}
 		break;
-	//case SDL_KEYUP:
-	//	switch (e.key.keysym.sym)
-	//	{
-	//	case SDLK_LEFT:
-	//		m_moving_left = false;
-	//		//m_position.x -= 1;
-	//		//m_facing_direction = FACING_LEFT;
-	//		break;
-	//	case SDLK_RIGHT:
-	//		m_moving_right = false;
-	//		//m_position.x += 1;				
-	//		//m_facing_direction = FACING_RIGHT;
-	//		break;
-	//	}
-	//	break;
+		//case SDL_KEYUP:
+		//	switch (e.key.keysym.sym)
+		//	{
+		//	case SDLK_LEFT:
+		//		m_moving_left = false;
+		//		//m_position.x -= 1;
+		//		//m_facing_direction = FACING_LEFT;
+		//		break;
+		//	case SDLK_RIGHT:
+		//		m_moving_right = false;
+		//		//m_position.x += 1;				
+		//		//m_facing_direction = FACING_RIGHT;
+		//		break;
+		//	}
+		//	break;
 
 	}
 
