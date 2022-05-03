@@ -33,7 +33,7 @@
     <ClCompile Include="Character.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CharcterMario.cpp">
+    <ClCompile Include="CharacterMario.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,7 +68,7 @@
     <ClInclude Include="Character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CharcterMario.h">
+    <ClInclude Include="CharacterMario.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
