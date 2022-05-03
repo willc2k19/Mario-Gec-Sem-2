@@ -1,7 +1,6 @@
 #include "GameScreenLevel1.h"
 #include "Texture2D.h"
 #include <iostream>
-#include "Character.h"
 
 
 GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer)
@@ -24,7 +23,8 @@ bool GameScreenLevel1::SetUpLevel()
 	}
 
 	//set up player character
-	my_character = new Character(m_renderer, "Images/Mario.png", Vector2D(64, 330));
+	mario = new CharacterMario(m_renderer, "Images/Mario.png", Vector2D(64, 330));
+	luigi = new CharacterLuigi(m_renderer, "Images/Luigi.png", Vector2D(164, 330));
 
 
 }
@@ -33,7 +33,8 @@ GameScreenLevel1::~GameScreenLevel1()
 {
 	m_background_texture = nullptr;
 
-	my_character = nullptr;
+	mario = nullptr;
+	luigi = nullptr;
 
 
 }
@@ -45,14 +46,16 @@ void GameScreenLevel1::Render()
 	m_background_texture->Render(Vector2D(), SDL_FLIP_NONE);
 
 	//render character
-	my_character->Render();
+	mario->Render();
+	luigi->Render();
 
 }
 
 void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 {
 	//update character
-	my_character->Update(deltaTime, e);
+	mario->Update(deltaTime, e);
+	luigi->Update(deltaTime, e);
 
 
 

@@ -1,7 +1,7 @@
 #include "CharacterMario.h"
 #include "Texture2D.h"
 
-CharacterMario::CharacterMario(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
+CharacterMario::CharacterMario(SDL_Renderer* renderer, string imagePath, Vector2D start_position) : Character(renderer, imagePath, start_position)
 {
 	//m_renderer = renderer;
 
@@ -48,14 +48,14 @@ void CharacterMario::Update(float deltaTime, SDL_Event e)
 			m_jumping = false;
 	}
 
-	//if (m_moving_left)
-	//{
-	//	MoveLeft(deltaTime);
-	//}
-	//else if (m_moving_right)
-	//{
-	//	MoveRight(deltaTime);
-	//}
+	if (m_moving_left)
+	{
+		MoveLeft(deltaTime);
+	}
+	else if (m_moving_right)
+	{
+		MoveRight(deltaTime);
+	}
 
 	switch (e.type)
 	{
@@ -63,14 +63,12 @@ void CharacterMario::Update(float deltaTime, SDL_Event e)
 		switch (e.key.keysym.sym)
 		{
 		case SDLK_LEFT:
-			MoveLeft(deltaTime);
-			//m_moving_left = true;
+			m_moving_left = true;
 			m_facing_direction = FACING_LEFT;
 			break;
 
 		case SDLK_RIGHT:
-			MoveLeft(deltaTime);
-			//m_moving_right = true;
+			m_moving_right = true;
 			m_facing_direction = FACING_RIGHT;
 			break;
 
@@ -79,21 +77,21 @@ void CharacterMario::Update(float deltaTime, SDL_Event e)
 			break;
 		}
 		break;
-	//case SDL_KEYUP:
-	//	switch (e.key.keysym.sym)
-	//	{
-	//	case SDLK_LEFT:
-	//		m_moving_left = false;
-	//		//m_position.x -= 1;
-	//		//m_facing_direction = FACING_LEFT;
-	//		break;
-	//	case SDLK_RIGHT:
-	//		m_moving_right = false;
-	//		//m_position.x += 1;				
-	//		//m_facing_direction = FACING_RIGHT;
-	//		break;
-	//	}
-	//	break;
+	case SDL_KEYUP:
+		switch (e.key.keysym.sym)
+		{
+		case SDLK_LEFT:
+			m_moving_left = false;
+			//m_position.x -= 1;
+			m_facing_direction = FACING_LEFT;
+			break;
+		case SDLK_RIGHT:
+			m_moving_right = false;
+			//m_position.x += 1;				
+			m_facing_direction = FACING_RIGHT;
+			break;
+		}
+		break;
 
 	}
 

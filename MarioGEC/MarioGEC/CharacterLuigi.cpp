@@ -1,7 +1,7 @@
 #include "CharacterLuigi.h"
 #include "Texture2D.h"
 
-CharacterLuigi::CharacterLuigi(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
+CharacterLuigi::CharacterLuigi(SDL_Renderer* renderer, string imagePath, Vector2D start_position) : Character(renderer, imagePath, start_position)
 {
 	//m_renderer = renderer;
 
@@ -48,14 +48,14 @@ void CharacterLuigi::Update(float deltaTime, SDL_Event e)
 			m_jumping = false;
 	}
 
-	//if (m_moving_left)
-	//{
-	//	MoveLeft(deltaTime);
-	//}
-	//else if (m_moving_right)
-	//{
-	//	MoveRight(deltaTime);
-	//}
+	if (m_moving_left)
+	{
+		MoveLeft(deltaTime);
+	}
+	else if (m_moving_right)
+	{
+		MoveRight(deltaTime);
+	}
 
 	switch (e.type)
 	{
@@ -63,15 +63,13 @@ void CharacterLuigi::Update(float deltaTime, SDL_Event e)
 		switch (e.key.keysym.sym)
 		{
 		case SDLK_a:
-			MoveLeft(deltaTime);
-			//m_moving_left = true;
-			m_facing_direction = FACING_LEFT;
+			m_moving_left = true;
+			m_facing_direction = FACING_RIGHT;
 			break;
 
 		case SDLK_d:
-			MoveLeft(deltaTime);
-			//m_moving_right = true;
-			m_facing_direction = FACING_RIGHT;
+			m_moving_right = true;
+			m_facing_direction = FACING_LEFT;
 			break;
 
 		case SDLK_w:
@@ -79,21 +77,21 @@ void CharacterLuigi::Update(float deltaTime, SDL_Event e)
 			break;
 		}
 		break;
-		//case SDL_KEYUP:
-		//	switch (e.key.keysym.sym)
-		//	{
-		//	case SDLK_LEFT:
-		//		m_moving_left = false;
-		//		//m_position.x -= 1;
-		//		//m_facing_direction = FACING_LEFT;
-		//		break;
-		//	case SDLK_RIGHT:
-		//		m_moving_right = false;
-		//		//m_position.x += 1;				
-		//		//m_facing_direction = FACING_RIGHT;
-		//		break;
-		//	}
-		//	break;
+		case SDL_KEYUP:
+			switch (e.key.keysym.sym)
+			{
+			case SDLK_a:
+				m_moving_left = false;
+				//m_position.x -= 1;
+				m_facing_direction = FACING_RIGHT;
+				break;
+			case SDLK_d:
+				m_moving_right = false;
+				//m_position.x += 1;				
+				m_facing_direction = FACING_LEFT;
+				break;
+			}
+			break;
 
 	}
 

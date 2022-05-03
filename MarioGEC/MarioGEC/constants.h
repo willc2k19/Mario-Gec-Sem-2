@@ -10,7 +10,7 @@
 #define GRAVITY 96.0f
 
 //constant values
-const float MOVEMENTSPEED = 50.0f;
+const float MOVEMENTSPEED = 100.0f;
 const float gravity = 1.0f;
 
 const float JUMP_FORCE_DECREMENT = 400.0f;
