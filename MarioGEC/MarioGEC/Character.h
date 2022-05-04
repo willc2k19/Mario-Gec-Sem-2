@@ -26,6 +26,7 @@ protected:
 	virtual void MoveRight(float deltaTime);
 	void AddGravity(float deltaTime);
 	void Jump();
+	float m_collision_radius;
 
 
 public:
@@ -37,6 +38,8 @@ public:
 	void SetPosition(Vector2D new_position);
 	Vector2D GetPosition();
 
+	float GetCollisionRadius();
+	Rect2D GetCollisionBox();
 
 private:
 	FACING m_facing_direction;

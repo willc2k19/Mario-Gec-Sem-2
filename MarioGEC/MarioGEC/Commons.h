@@ -26,6 +26,14 @@ struct Rect2D
 	float width;
 	float height;
 
+	Rect2D(float x_pos, float y_pos, float width, float height)
+	{
+		x = x_pos;
+		y = y_pos;
+		this->width = width;
+		this->height = height;
+	}
+	
 	Rect2D()
 	{
 		x = 0.0f;
@@ -34,13 +42,7 @@ struct Rect2D
 		height = 0.0f;
 	}
 
-	Rect2D(float initialX, float initialY, float initialWidth, float initialHeight)
-	{
-		x = initialX;
-		y = initialY;
-		width = initialWidth;
-		height = initialHeight;
-	}
+
 };
 
 enum SCREENS
