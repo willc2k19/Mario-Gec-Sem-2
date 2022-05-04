@@ -2,7 +2,7 @@
 #include "Texture2D.h"
 
 
-Character::Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position)
+Character::Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position,LevelMap* map)
 {
 	m_renderer = renderer;
 
@@ -16,7 +16,7 @@ Character::Character(SDL_Renderer* renderer, string imagePath, Vector2D start_po
 	m_moving_right = false;
 
 	m_collision_radius = 15.0f;
-
+	m_current_level_map = map;
 }
 
 Character::~Character()
@@ -40,6 +40,21 @@ void Character::Render()
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
+	//collision position variables
+	int centralXPosition = (int)(m_position.x + (m_texture->GetWidth() * 0.5f)) / TILE_WIDTH;
+	int footPosition = (int)(m_position.y + m_texture->GetHeight()) / TILE_HEIGHT;
+
+	//deal with gravity
+	if (m_current_level_map->GetTileAt(footPosition,centralXPosition) == 0)
+	{
+		AddGravity(deltaTime);
+	}
+	else
+	{
+		//collided with ground so we can jump again
+		m_can_jump = true;
+	}
+
 
 	if (m_jumping)
 	{
@@ -129,8 +144,17 @@ void Character::Jump()
 
 void Character::AddGravity(float deltaTime)
 {
-	m_position.y += deltaTime * GRAVITY;
-	m_can_jump = false;
+	//m_position.y += deltaTime * GRAVITY;
+	//m_can_jump = false;
+
+	if(m_position.y+64<=SCREEN_HEIGHT)
+	{
+		m_position.y += GRAVITY * deltaTime;
+	}
+	else
+	{
+		m_can_jump = true;
+	}
 }
 
 void Character::SetPosition(Vector2D new_position)

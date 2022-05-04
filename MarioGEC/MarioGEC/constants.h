@@ -4,8 +4,8 @@
 #define SCREEN_HEIGHT 416
 #define MAP_HEIGHT 13
 #define MAP_WIDTH 16
-#define TITLE_HEIGHT 32
-#define TITLE_WIDTH 32
+#define TILE_HEIGHT 32
+#define TILE_WIDTH 32
 
 #define GRAVITY 96.0f
 
