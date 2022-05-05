@@ -42,6 +42,9 @@ public:
 	float GetCollisionRadius();
 	Rect2D GetCollisionBox();
 
+	bool IsJumping();
+	void CancelJump();
+
 private:
 	FACING m_facing_direction;
 	LevelMap* m_current_level_map;
