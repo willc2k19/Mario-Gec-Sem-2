@@ -8,6 +8,8 @@
 #include "CharacterMario.h"
 #include "CharacterLuigi.h"
 #include "LevelMap.h"
+#include "CharacterKoopa.h"
+#include <vector>
 
 class Texture2D;
 
@@ -35,6 +37,9 @@ private:
 
 	void DoScreenShake();
 
+
+	vector<CharacterKoopa*> m_enemies;
+
 public:
 	GameScreenLevel1(SDL_Renderer* renderer);
 	~GameScreenLevel1();
@@ -42,6 +47,8 @@ public:
 	void Render() override;
 	void Update(float deltaTime, SDL_Event e) override;
 	void UpdatePowBlock();
+	void UpdateEnemies(float deltaTime, SDL_Event e);
+	void CreateKoopa(Vector2D position, FACING direction, float speed);
 
 
 };
