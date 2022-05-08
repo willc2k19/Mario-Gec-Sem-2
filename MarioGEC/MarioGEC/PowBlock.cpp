@@ -3,6 +3,8 @@
 
 PowBlock::PowBlock(SDL_Renderer* renderer, LevelMap* map)
 {
+
+	m_renderer = renderer;
 	std::string imagePath = "Images/PowBlock.png";
 	m_texture = new Texture2D(renderer);
 	if (!m_texture->LoadFromFile(imagePath.c_str()))
@@ -57,7 +59,7 @@ void PowBlock::Render()
 		SDL_Rect dest_rect = { static_cast<int>(m_position.x), static_cast<int>(m_position.y),m_single_sprite_w,m_single_sprite_h };
 
 		//draw sprite
-		m_texture->Render(portion_of_sprite, dest_rect, SDL_FLIP_NONE);
+		m_texture->Render(portion_of_sprite, dest_rect, SDL_FLIP_NONE, 0.0f);
 	}
 
 

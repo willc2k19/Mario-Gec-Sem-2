@@ -6,6 +6,7 @@
 
 GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer)
 {
+	m_renderer = renderer;
 	m_level_map = nullptr;
 	SetUpLevel();
 

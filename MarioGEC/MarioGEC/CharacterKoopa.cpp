@@ -1,6 +1,6 @@
 #include "CharacterKoopa.h"
 
-CharacterKoopa::CharacterKoopa(SDL_Renderer* renderer, std::string imagePath, Vector2D start_position, LevelMap* map, FACING start_facing, float movement_speed) :Character(renderer, imagePath, start_position, map)
+CharacterKoopa::CharacterKoopa(SDL_Renderer* renderer, std::string imagePath, Vector2D start_position, LevelMap* map, FACING start_facing, float movement_speed) : Character(renderer, imagePath, start_position, map)
 {
 
 	m_facing_direction = start_facing;

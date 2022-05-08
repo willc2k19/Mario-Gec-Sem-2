@@ -73,6 +73,9 @@ void Texture2D::Render(Vector2D new_position, SDL_RendererFlip flip, double angl
 	//render to screen
 	SDL_RenderCopyEx(m_renderer, m_texture, nullptr, &renderLocation, 0, nullptr, flip);
 
+	//update screen
+	SDL_RenderPresent(m_renderer);
+
 }
 
 void Texture2D::Render(SDL_Rect src_rect, SDL_Rect src_dest, SDL_RendererFlip flip, double angle)
