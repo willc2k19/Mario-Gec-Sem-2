@@ -1,5 +1,6 @@
 #include "CharacterKoopa.h"
 
+
 CharacterKoopa::CharacterKoopa(SDL_Renderer* renderer, std::string imagePath, Vector2D start_position, LevelMap* map, FACING start_facing, float movement_speed) : Character(renderer, imagePath, start_position, map)
 {
 
@@ -52,11 +53,19 @@ void CharacterKoopa::FlipRightwayUp()
 void CharacterKoopa::Render()
 {
 	//variable to hold left position of sprite to draw
-	int left = 0.0f;
+	int left = m_current_frame*m_single_sprite_w;
 
 	//if injured move position to second image on spritesheet
 	if (m_injured)
-		left = m_single_sprite_w;
+	{
+		m_current_frame = 1;
+
+	}
+	else
+	{
+		m_current_frame = 0;
+
+	}
 
 	//get portion of spritesheet to draw
 	//							  xPos, Ypos, width of sprite, height of sprite
@@ -80,7 +89,7 @@ void CharacterKoopa::Render()
 void CharacterKoopa::Update(float deltaTime, SDL_Event e)
 {
 	//use code within base class
-	Character::Update(deltaTime, e);
+	//Character::Update(deltaTime, e);
 
 	if (!m_injured)
 	{
@@ -125,4 +134,17 @@ void CharacterKoopa::SetAlive(bool isAlive)
 	m_alive = isAlive;
 }
 
+void CharacterKoopa::KoopaAnims(float deltaTime, SDL_Event e)
+{
+	m_frame_delay -= deltaTime;
+	if (m_frame_delay <= 0.0f)
+	{
+		m_frame_delay = ANIM_DELAY;
+		m_current_frame++;
 
+		if (m_current_frame > 1)
+		{
+			m_current_frame = 0;
+		}
+	}
+}

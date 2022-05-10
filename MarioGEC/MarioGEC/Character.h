@@ -1,14 +1,14 @@
 #pragma once
 #include <iostream>
-#include "SDL.h"
+#include <SDL.h>
+#include <SDL_mixer.h>
 #include "Commons.h"
 #include "constants.h"
 #include "LevelMap.h"
+#include "Texture2D.h"
 using namespace std;
 
 class Texture2D;
-
-
 
 
 class Character
@@ -28,7 +28,7 @@ protected:
 	void AddGravity(float deltaTime);
 	void Jump();
 	float m_collision_radius;
-
+	bool m_alive = true;
 
 public:
 	Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position, LevelMap* map);
@@ -44,6 +44,17 @@ public:
 
 	bool IsJumping();
 	void CancelJump();
+
+	bool LoadAudio();
+	Mix_Chunk* jump_sound;
+	Mix_Chunk* dead_sound;
+
+
+	void SetAlive(bool isAlive);
+	bool GetAlive()
+	{
+		return m_alive;
+	}
 
 private:
 	FACING m_facing_direction;

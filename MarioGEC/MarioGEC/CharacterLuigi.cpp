@@ -39,7 +39,6 @@ void CharacterLuigi::Render()
 void CharacterLuigi::Update(float deltaTime, SDL_Event e)
 {
 
-
 	//collision variables for positioning
 	int m_central_x_pos = (int)(m_position.x + (m_texture->GetWidth() * 0.5f)) / TILE_WIDTH;
 	int m_foot_pos = (int)(m_position.y + m_texture->GetHeight()) / TILE_HEIGHT;

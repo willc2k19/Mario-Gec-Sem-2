@@ -6,7 +6,8 @@
 #define MAP_WIDTH 16
 #define TILE_HEIGHT 32
 #define TILE_WIDTH 32
-
+#define PLAYER_ANIM_DELAY 0.05
+#define ANIM_DELAY 0.15
 #define GRAVITY 96.0f
 
 //constant values

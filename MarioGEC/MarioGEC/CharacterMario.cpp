@@ -14,7 +14,6 @@ CharacterMario::CharacterMario(SDL_Renderer* renderer, string imagePath, Vector2
 	m_moving_left = false;
 	m_moving_right = false;
 	m_current_level_map = map;
-
 }
 
 CharacterMario::~CharacterMario()
@@ -25,6 +24,7 @@ CharacterMario::~CharacterMario()
 
 void CharacterMario::Render()
 {
+
 	if (m_facing_direction == FACING_RIGHT)
 	{
 		m_texture->Render(m_position, SDL_FLIP_NONE);
@@ -115,3 +115,31 @@ void CharacterMario::Update(float deltaTime, SDL_Event e)
 	}
 
 }
+
+//void CharacterMario::MarioAnims(float deltaTime, SDL_Event e)
+//{
+//	m_frame_delay -= deltaTime;
+//	if (m_frame_delay <= 0.0f)
+//	{
+//		m_frame_delay = PLAYER_ANIM_DELAY;
+//		if (!reverse_anim)
+//		{
+//			m_current_frame++;
+//			if (m_current_frame > 2)
+//			{
+//				m_current_frame = 2;
+//				reverse_anim = true;
+//			}
+//		}
+//		else
+//		{
+//			m_current_frame--;
+//			if (m_current_frame < 0)
+//			{
+//				reverse_anim = false;
+//				m_current_frame = 0;
+//			}
+//		}
+//	}
+//
+//}

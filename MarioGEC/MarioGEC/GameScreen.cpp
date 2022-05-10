@@ -21,3 +21,24 @@ void GameScreen::Update(float deltaTime, SDL_Event e)
 {
 
 }
+
+
+bool GameScreen::LoadAudio()
+{
+	death_sound = Mix_LoadWAV("Music/Death.wav");
+	gameover_sound = Mix_LoadWAV("Music/GameOver.wav");
+
+	if (gameover_sound == nullptr)
+	{
+		cout << "gameover sound failed to load. error: " << Mix_GetError();
+		return false;
+
+	}
+	if (death_sound == nullptr)
+	{
+		cout << "death sound failed to load. error: " << Mix_GetError();
+		return false;
+
+	}
+	return true;
+}

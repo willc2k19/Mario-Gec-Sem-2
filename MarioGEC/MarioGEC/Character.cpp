@@ -1,6 +1,6 @@
 #include "Character.h"
 #include "Texture2D.h"
-
+#include "Collisions.h"
 
 Character::Character(SDL_Renderer* renderer, string imagePath, Vector2D start_position,LevelMap* map)
 {
@@ -11,12 +11,13 @@ Character::Character(SDL_Renderer* renderer, string imagePath, Vector2D start_po
 	m_texture = new Texture2D(renderer);
 	m_texture->LoadFromFile(imagePath);
 
-	m_facing_direction = FACING_RIGHT;
 	m_moving_left = false;
 	m_moving_right = false;
 
 	m_collision_radius = 15.0f;
 	m_current_level_map = map;
+
+	LoadAudio();
 }
 
 Character::~Character()
@@ -27,25 +28,26 @@ Character::~Character()
 
 void Character::Render()
 {
-	if (m_facing_direction == FACING_RIGHT)
-	{
-		m_texture->Render(m_position, SDL_FLIP_NONE);
-	}
-	else
-	{
-		m_texture->Render(m_position, SDL_FLIP_HORIZONTAL);
-	}
+	//if (m_facing_direction == FACING_RIGHT)
+	//{
+	//	m_texture->Render(m_position, SDL_FLIP_NONE);
+	//}
+	//else
+	//{
+	//	m_texture->Render(m_position, SDL_FLIP_HORIZONTAL);
+	//}
 
 }
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
 	//collision position variables
-	int centralXPosition = (int)(m_position.x + (m_texture->GetWidth() * 0.5f)) / TILE_WIDTH;
-	int footPosition = (int)(m_position.y + m_texture->GetHeight()) / TILE_HEIGHT;
+	int head_position = (int)(m_position.y + m_texture->GetHeight() - 32) / TILE_HEIGHT;
+	int central_x_position = (int)(m_position.x + (m_texture->GetWidth() * 0.5f)) / TILE_WIDTH;
+	int foot_position = (int)(m_position.y + m_texture->GetHeight()) / TILE_HEIGHT;
 
 	//deal with gravity
-	if (m_current_level_map->GetTileAt(footPosition,centralXPosition) == 0)
+	if (m_current_level_map->GetTileAt(foot_position, central_x_position) == 0)
 	{
 		AddGravity(deltaTime);
 	}
@@ -62,7 +64,7 @@ void Character::Update(float deltaTime, SDL_Event e)
 
 		m_jump_force -= JUMP_FORCE_DECREMENT * deltaTime;
 
-		if (m_jump_force <= 0.0f)
+		if (m_jump_force <= 0.0f&&m_current_level_map->GetTileAt(foot_position,central_x_position)==1)
 			m_jumping = false;
 	}
 
@@ -136,6 +138,7 @@ void Character::Jump()
 {
 	if (!m_jumping) 
 	{
+		Mix_PlayChannel(-1, jump_sound, 0);
 		m_jump_force = INITIAL_JUMP_FORCE;
 		m_jumping = true;
 		m_can_jump = false;
@@ -185,4 +188,32 @@ bool Character::IsJumping()
 void Character::CancelJump()
 {
 	return;
+}
+
+bool Character::LoadAudio()
+{
+	jump_sound = Mix_LoadWAV("Music/Jump.wav");
+	if (jump_sound == nullptr)
+	{
+		cout << "Jump sound load error. Error: " << Mix_GetError() << endl;
+		return false;
+	}
+	dead_sound = Mix_LoadWAV("Music/Death.wav");
+	if (dead_sound == nullptr)
+	{
+		cout << "Dead sound load error. Error: " << Mix_GetError() << endl;
+		return false;
+	}
+	return true;
+}
+
+void Character::SetAlive(bool isAlive)
+{
+	m_alive = isAlive;
+	if (m_alive == true)
+	{
+		Mix_PauseMusic();
+		Mix_PlayChannel(-1, dead_sound,0);
+		
+	}
 }

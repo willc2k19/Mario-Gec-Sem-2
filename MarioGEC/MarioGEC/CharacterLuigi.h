@@ -18,6 +18,9 @@ private:
 	bool mMovingRight;
 	LevelMap* m_current_level_map;
 
+
+
+
 };
 
 

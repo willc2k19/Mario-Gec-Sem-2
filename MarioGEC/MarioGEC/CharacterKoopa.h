@@ -21,6 +21,10 @@ private:
 	bool m_moving_left;
 	bool m_moving_right;
 
+	float m_frame_delay;
+	int m_current_frame;
+	void KoopaAnims(float deltaTime, SDL_Event e);
+
 public:
 	CharacterKoopa(SDL_Renderer* renderer, std::string imagePath, Vector2D start_position, LevelMap* map, FACING start_facing, float movement_speed);
 	~CharacterKoopa();
